@@ -8,5 +8,5 @@
 
 Se obtuvieron los datos de mortalidad materna para los años 2003-2019 de la página de Datos Abiertos del Gobierno de México, [en este link](https://datos.gob.mx/busca/dataset/mortalidad-materna). 
 
-![](https://user-images.githubusercontent.com/33968041/132590625-fc4da034-580f-4942-ab3c-64536bab737f.png)
+![](https://github.com/almamelisa/MortalidadMaterna-ProyectoFinal-/blob/main/pancita.png)
 
