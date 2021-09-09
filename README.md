@@ -11,5 +11,7 @@ Objetivo general: Analizar la relación entre la Causas de mortalidad con la asi
 
 Se obtuvieron los datos de mortalidad materna para los años 2003-2019 de la página de Datos Abiertos del Gobierno de México, [en este link](https://datos.gob.mx/busca/dataset/mortalidad-materna). 
 
+Puedes encontrar el R markdown en Rpubs [aquí](https://rpubs.com/Mel_87/806714)
+
 ![](https://github.com/almamelisa/MortalidadMaterna-ProyectoFinal-/blob/main/pancita.png)
 
