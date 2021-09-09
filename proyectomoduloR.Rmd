@@ -1,0 +1,105 @@
+---
+title: "Proyecto Módulo R"
+author: "Melisa Vázquez"
+date: "8/9/2021"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Instalar librerías y cargarlas
+
+```{r }
+
+library(devtools)
+library(inspectdf)
+library(dplyr)
+```
+
+## Cargar base de datos y explorar el dataframe
+
+```{r cars}
+def <- read.csv("mortalidadmaterna2.csv", sep = ";", header = T)
+  
+# Explorar de forma general el dataframe
+class(def)
+names(def)
+head(def)
+
+```
+
+
+## Ver un gráfico de frecuencias:
+
+```{r pressure, echo=FALSE}
+dfdef <- def %>% 
+inspect_cat()
+
+
+dfdef %>% 
+  show_plot()
+```
+## Obtener tablas de contingencia
+
+```{r}
+########################### TABLAS DE CONTINGENCIA ############################
+#tabla de frecuencias
+causa_asis<-table(def$CausaCIE, def$AsistenciaMedica)
+causa_dere<-table(def$CausaCIE, def$Derechohabiencia)
+causa_Edad<-table(def$CausaCIE, def$EdadQuinquenal)
+entidad_causa<-table(def$CausaCIE, def$EntidadResidencia)
+ocupacion_dere<-table(def$Derechohabiencia, def$OcupacionHabitual)
+
+#hacer una tabla de proporciones, según el total de casos
+
+prop.table(causa_asis)
+prop.table(causa_dere)
+prop.table(causa_Edad)
+prop.table(entidad_causa)
+prop.table(ocupacion_dere)
+
+#hacer una tabla de proporciones, según filas
+prop.table(causa_asis, 1)
+prop.table(causa_dere, 1)
+prop.table(causa_Edad, 1)
+prop.table(entidad_causa, 1)
+prop.table(ocupacion_dere, 1)
+```
+
+## Hacer pruebas de Chi cuadrada para probar hipótesis
+```{r}
+########################### PRUEBA DE CHI CUADRADA ############################
+
+#¿los factores 1 y 2 son independientes entre sí?
+#Ho. Las variables FACTOR 1 y FACTOR 2 son independientes.
+#Ha. Las variables FACTOR 1 y FACTOR 2 no son independientes. 
+#Estadístico de prueba, chi cuadrada y valor crítico en una tabla de chi cuadrada y
+#con nivel de significancia. Sí el valor en la tabla es menor que el valor calculado, 
+#rechazamos la Hipótesis nula. 
+#Ho. La causa de mortalidad materna es independiente a la asistencia médica. 
+#Ha. La causa de mortalidad materna no es independiente a la asistencia médica. 
+
+chisq.test(def$CausaCIE, def$AsistenciaMedica)
+#Ho. La causa de mortalidad materna es independiente del tipo de seguridad social. 
+#Ha. La causa de mortalidad materna no es independiente del tipo de seguridad social. 
+
+chisq.test(def$CausaCIE, def$Derechohabiencia)
+
+#Ho. La causa de mortalidad materna es independiente a la edad. 
+#Ha. La causa de mortalidad materna no es independiente a la edad. 
+
+chisq.test(def$CausaCIE, def$EdadQuinquenal)
+
+#Ho. La causa de mortalidad materna es independiente a la Entidad. 
+#Ha. La causa de mortalidad materna no es independiente a la Entidad. 
+
+chisq.test(def$CausaCIE, def$EntidadResidencia)
+
+#Ho. La Derechohabiencia es independiente a ocupación. 
+#Ha. La Derechohabiencia no es independiente a ocupación. 
+
+chisq.test(def$Derechohabiencia, def$OcupacionHabitual)
+
+```
+
+
